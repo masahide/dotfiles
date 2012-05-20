@@ -149,7 +149,7 @@ highlight treeCWD cterm=none ctermfg=DarkYellow
 highlight netrwDir cterm=none ctermfg=Cyan
 
 " Set the <Leader> for combo commands
-let mapleader = ","
+"let mapleader = ","
 
 set hls
 if has('persistent_undo')

@@ -9,10 +9,21 @@ set cpo&vim
 if !exists('s:interface')
   let s:interface = {
   \ "token": "",
-  \ "email": "masahide.y@gmail.com",
+  \ "email": "",
   \ "notes": [],
   \}
 endif
+
+let s:email = ""
+let s:pass = ""
+
+if filereadable (expand('~/.vim/.vimplenote'))
+	source ~/.vim/.vimplenote
+	let s:email = g:vimplenote_email
+	let s:pass = g:vimplenote_pass
+endif
+
+
 
 function! s:interface.set_scratch_buffer()
   setlocal buftype=nofile
@@ -58,8 +69,8 @@ function! s:interface.authorization() dict
   if len(self.token) > 0
     return ''
   endif
-  let self.email = input('email:')
-  let password = inputsecret('password:')
+  let self.email = s:email "input('email:')
+  let password = s:pass "inputsecret('password:')
   let creds = webapi#base64#b64encode(printf('email=%s&password=%s', self.email, password))
   let res = webapi#http#post('https://simple-note.appspot.com/api/login', creds)
   if res.header[0] == 'HTTP/1.1 200 OK'

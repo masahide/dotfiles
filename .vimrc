@@ -2,6 +2,25 @@
 " MAIN CUSTOMIZATION FILE
 "
 
+set nocompatible
+filetype off
+
+if has('vim_starting')
+	set runtimepath+=~/.vim/neobundle.vim.git
+	call neobundle#rc(expand('~/.vim/.bundle'))
+endif
+
+NeoBundle 'git://github.com/Shougo/clang_complete.git'
+NeoBundle 'git://github.com/Shougo/echodoc.git'
+NeoBundle 'git://github.com/Shougo/neocomplcache.git'
+NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
+NeoBundle 'git://github.com/Shougo/unite.vim.git'
+NeoBundle 'git://github.com/Shougo/vim-vcs.git'
+NeoBundle 'git://github.com/Shougo/vimfiler.git'
+NeoBundle 'git://github.com/Shougo/vimshell.git'
+NeoBundle 'git://github.com/Shougo/vinarise.git'
+NeoBundle 'Lokaltog/vim-powerline'
+
 " Enable loading filetype and indentation plugins
 filetype plugin on
 filetype indent on
@@ -13,8 +32,7 @@ syntax on
 " GLOBAL SETTINGS
 "
 
-" Write contents of the file, if it has been modified, on buffer exit
-set autowrite
+" Write contents of the file, if it has been modified, on buffer exit set autowrite
 
 " Allow backspacing over everything
 set backspace=indent,eol,start
@@ -190,4 +208,12 @@ let g:proj_run_fold="!git checkout -- %f"
 " git status
 let g:proj_run3='!git status'
 
+:set helplang=ja,en
+
+let g:Powerline_symbols = 'fancy'
+
+" 「日本語入力固定モード」切替キー
+inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
+" PythonによるIBus制御指定
+let IM_CtrlIBusPython = 1
 

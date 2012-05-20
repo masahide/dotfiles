@@ -1,0 +1,2 @@
+let g:vimplenote_email = "masahide.y@gmail.com"
+let g:vimplenote_pass = ""

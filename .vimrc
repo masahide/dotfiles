@@ -170,3 +170,24 @@ highlight SpecialKey ctermbg=7     " ターミナル版での背景色指定
 highlight SpecialKey guifg=gray    " GUI版での文字色指定
 highlight SpecialKey guibg=#012345 " GUI版での背景色指定
 set autoindent
+
+" ファイルが選択されたらウィンドウを閉じる
+":let g:proj_flags = "imstc"
+
+" <Leader>P プロジェクトとトグルで開閉
+:nmap <silent> <Leader>P <Plug>ToggleProject
+" <Leader>p デフォルトのプロジェクトを開く
+:nmap <silent> <Leader>p :Project<CR>
+
+" git add
+let g:proj_run1='!git add %f'
+let g:proj_run_fold1='*!git add %f'
+
+" git checkout
+let g:proj_run2='git checkout -- %f'
+let g:proj_run_fold="!git checkout -- %f"
+
+" git status
+let g:proj_run3='!git status'
+
+

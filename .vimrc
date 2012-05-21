@@ -48,6 +48,8 @@ set history=1000
 
 " Enable incremental search
 set incsearch
+set ignorecase
+set smartcase
 
 " Always show status line, even for one window
 set laststatus=2
@@ -55,8 +57,7 @@ set laststatus=2
 " Jump to matching bracket for 2/10th of a second (works with showmatch)
 set matchtime=2
 
-" Don't highlight results of a search
-set nohlsearch
+set hlsearch
 
 " Enable CTRL-A/CTRL-X to work on octal and hex numbers, as well as characters
 set nrformats=octal,hex,alpha
@@ -169,7 +170,27 @@ highlight netrwDir cterm=none ctermfg=Cyan
 " Set the <Leader> for combo commands
 "let mapleader = ","
 
-set hls
+" 全角スペース・行末のスペース・タブの可視化
+if has("syntax")
+    syntax on
+ 
+    " PODバグ対策
+    syn sync fromstart
+ 
+    function! ActivateInvisibleIndicator()
+        syntax match InvisibleJISX0208Space "　" display containedin=ALL
+        highlight InvisibleJISX0208Space term=underline ctermbg=Blue guibg=darkgray gui=underline
+        "syntax match InvisibleTrailedSpace "[ \t]\+$" display containedin=ALL
+        "highlight InvisibleTrailedSpace term=underline ctermbg=Red guibg=NONE gui=undercurl guisp=darkorange
+        "syntax match InvisibleTab "\t" display containedin=ALL
+        "highlight InvisibleTab term=underline ctermbg=white gui=undercurl guisp=darkslategray
+    endf
+    augroup invisible
+        autocmd! invisible
+        autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
+    augroup END
+endif
+
 if has('persistent_undo')
     set undodir=~/.vim/undo
     set undofile
@@ -216,4 +237,15 @@ let g:Powerline_symbols = 'fancy'
 inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
 " PythonによるIBus制御指定
 let IM_CtrlIBusPython = 1
+
+set mouse=a
+set ttymouse=xterm2
+
+" 括弧入力時に対応する括弧を表示 (noshowmatch:表示しない)
+set showmatch
+
+" コマンドライン補完するときに強化されたものを使う(参照 :help wildmenu)
+set wildmenu
+" テキスト挿入中の自動折り返しを日本語に対応させる
+set formatoptions+=mM
 

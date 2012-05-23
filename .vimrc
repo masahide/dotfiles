@@ -20,6 +20,7 @@ NeoBundle 'git://github.com/Shougo/vimfiler.git'
 NeoBundle 'git://github.com/Shougo/vimshell.git'
 NeoBundle 'git://github.com/Shougo/vinarise.git'
 NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'git://github.com/altercation/vim-colors-solarized.git'
 
 " Enable loading filetype and indentation plugins
 filetype plugin on
@@ -171,25 +172,25 @@ highlight netrwDir cterm=none ctermfg=Cyan
 "let mapleader = ","
 
 " 全角スペース・行末のスペース・タブの可視化
-if has("syntax")
-    syntax on
- 
-    " PODバグ対策
-    syn sync fromstart
- 
-    function! ActivateInvisibleIndicator()
-        syntax match InvisibleJISX0208Space "　" display containedin=ALL
-        highlight InvisibleJISX0208Space term=underline ctermbg=Blue guibg=darkgray gui=underline
-        "syntax match InvisibleTrailedSpace "[ \t]\+$" display containedin=ALL
-        "highlight InvisibleTrailedSpace term=underline ctermbg=Red guibg=NONE gui=undercurl guisp=darkorange
-        "syntax match InvisibleTab "\t" display containedin=ALL
-        "highlight InvisibleTab term=underline ctermbg=white gui=undercurl guisp=darkslategray
-    endf
-    augroup invisible
-        autocmd! invisible
-        autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
-    augroup END
-endif
+"if has("syntax")
+"    syntax on
+" 
+"    " PODバグ対策
+"    syn sync fromstart
+" 
+"    function! ActivateInvisibleIndicator()
+"        syntax match InvisibleJISX0208Space "　" display containedin=ALL
+"        highlight InvisibleJISX0208Space term=underline ctermbg=Blue guibg=darkgray gui=underline
+"        "syntax match InvisibleTrailedSpace "[ \t]\+$" display containedin=ALL
+"        "highlight InvisibleTrailedSpace term=underline ctermbg=Red guibg=NONE gui=undercurl guisp=darkorange
+"        "syntax match InvisibleTab "\t" display containedin=ALL
+"        "highlight InvisibleTab term=underline ctermbg=white gui=undercurl guisp=darkslategray
+"    endf
+"    augroup invisible
+"        autocmd! invisible
+"        autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
+"    augroup END
+"endif
 
 if has('persistent_undo')
     set undodir=~/.vim/undo
@@ -248,4 +249,11 @@ set showmatch
 set wildmenu
 " テキスト挿入中の自動折り返しを日本語に対応させる
 set formatoptions+=mM
+
+
+" vim-colors-solarized
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+
 

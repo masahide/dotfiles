@@ -3,7 +3,7 @@
 "
 
 " Load PHP Documentor for VIM
-source ~/.vim/php-doc.vim
+"source ~/.vim/php-doc.vim
 
 " Set up automatic formatting
 set formatoptions+=tcqlro

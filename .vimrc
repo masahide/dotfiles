@@ -256,4 +256,6 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
+" クリップボードにコピー
+vmap <C-c> :w !xsel -ib<CR><CR>
 

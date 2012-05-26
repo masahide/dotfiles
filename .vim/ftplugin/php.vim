@@ -81,8 +81,8 @@ omap <silent> iP :silent normal viP<CR>
 
 " Mappings for PHP Documentor for VIM
 "inoremap <buffer> <C-P> <Esc>:call PhpDocSingle()<CR>i
-nnoremap <buffer> <C-P> :call PhpDocSingle()<CR>
-vnoremap <buffer> <C-P> :call PhpDocRange()<CR>
+"nnoremap <buffer> <C-P> :call PhpDocSingle()<CR>
+"vnoremap <buffer> <C-P> :call PhpDocRange()<CR>
 " Generate @uses tag based on inheritance info
 let g:pdv_cfg_Uses = 1
 " Set default Copyright

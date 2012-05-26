@@ -21,6 +21,7 @@ NeoBundle 'git://github.com/Shougo/vimshell.git'
 NeoBundle 'git://github.com/Shougo/vinarise.git'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'git://github.com/altercation/vim-colors-solarized.git'
+NeoBundle 'git://github.com/thinca/vim-ref.git'
 
 " Enable loading filetype and indentation plugins
 filetype plugin on
@@ -258,4 +259,71 @@ colorscheme solarized
 
 " クリップボードにコピー
 vmap <C-c> :w !xsel -ib<CR><CR>
+
+"
+" unite.vim
+"
+" @see http://blog.remora.cx/2010/12/vim-ref-with-unite.html
+
+" 入力モードで開始する
+let g:unite_enable_start_insert=1
+" バッファ一覧
+noremap <C-P> :Unite buffer<CR>
+" ファイル一覧
+noremap <C-N> :Unite -buffer-name=file file<CR>
+" 最近使ったファイルの一覧
+noremap <C-Z> :Unite file_mru<CR>
+" ウィンドウを分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+" ウィンドウを縦に分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+" ESCキーを2回押すと終了する
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+" 初期設定関数を起動する
+au FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()
+	" Overwrite settings.
+endfunction
+" 様々なショートカット
+call unite#set_substitute_pattern('file', '\$\w\+', '\=eval(submatch(0))', 200)
+call unite#set_substitute_pattern('file', '^@@', '\=fnamemodify(expand("#"), ":p:h")."/"', 2)
+call unite#set_substitute_pattern('file', '^@', '\=getcwd()."/*"', 1)
+call unite#set_substitute_pattern('file', '^;r', '\=$VIMRUNTIME."/"')
+call unite#set_substitute_pattern('file', '^\~', escape($HOME, '\'), -2)
+call unite#set_substitute_pattern('file', '\\\@<! ', '\\ ', -20)
+call unite#set_substitute_pattern('file', '\\ \@!', '/', -30)
+if has('win32') || has('win64')
+	call unite#set_substitute_pattern('file', '^;p', 'C:/Program Files/')
+	call unite#set_substitute_pattern('file', '^;v', '~/vimfiles/')
+else
+	call unite#set_substitute_pattern('file', '^;v', '~/.vim/')
+endif
+
+" ref-vim
+let g:ref_phpmanual_path = $HOME . '/.vim/phpdoc/php-chunked-xhtml'
+let g:ref_source_webdict_sites  = {
+\   'wikipedia:ja': 'http://ja.wikipedia.org/wiki/%s',
+\   'wiktionary': {
+\     'url': 'http://ja.wiktionary.org/wiki/%s',
+\     'keyword_encoding': 'utf-8',
+\     'cache': 1,
+\   },
+\   'yahoo': {
+\     'url': 'http://dic.search.yahoo.co.jp/search?p=%s',
+\     'keyword_encoding': 'utf-8',
+\     'cache': 1,
+\   }
+\ }
+" 出力に対するフィルタ。最初の数行を削除している。
+function! g:ref_source_webdict_sites.wiktionary.filter(output)
+  return join(split(a:output, "\n")[18 :], "\n")
+endfunction
+function! g:ref_source_webdict_sites.yahoo.filter(output)
+  return join(split(a:output, "\n")[47 :], "\n")
+endfunction
+let g:ref_source_webdict_sites.default = 'yahoo'
+nnoremap ,,k :<C-u>Ref webdict<Space><C-r><C-w><CR>
 

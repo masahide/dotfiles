@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=".vim .vimrc .tmux.conf"
+DOT_FILES=".vim .vimrc .tmux.conf .Xresources"
 
 
 CURDIR=`basename \`pwd\``

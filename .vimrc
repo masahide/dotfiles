@@ -23,6 +23,7 @@ NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'git://github.com/altercation/vim-colors-solarized.git'
 NeoBundle 'git://github.com/thinca/vim-ref.git'
 NeoBundle 'git://github.com/tpope/vim-fugitive.git'
+NeoBundle 'git://github.com/joonty/vim-xdebug.git'
 
 " Enable loading filetype and indentation plugins
 filetype plugin on

@@ -32,8 +32,8 @@ if exists('loaded_taglist')
 	let Tlist_Max_Submenu_Items = 15
 	let tlist_php_settings = 'php;c:class;d:constant;f:function'
 
-	" map <F5> to toggle taglist window
-	nmap <silent> <F5> :TlistToggle<CR>
+	" map <F8> to toggle taglist window
+	nmap <silent> <F8> :TlistToggle<CR>
 endif
 
 " Set CVS executable for VCSCommand plugin

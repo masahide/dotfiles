@@ -37,6 +37,10 @@ case "$1" in
   clean)
 	unlink-dot-file
 	;;
+  git_submodule)
+	git submodule init
+	git submodule update
+	;;
   all|*)
 	link-dot-file
 	;;

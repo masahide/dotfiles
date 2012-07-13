@@ -2,7 +2,7 @@
 " MAIN CUSTOMIZATION FILE
 "
 
-set nocompatible
+"set nocompatible
 filetype off
 
 if has('vim_starting')
@@ -12,7 +12,7 @@ endif
 
 NeoBundle 'git://github.com/Shougo/clang_complete.git'
 NeoBundle 'git://github.com/Shougo/echodoc.git'
-NeoBundle 'git://github.com/Shougo/neocomplcache.git'
+"NeoBundle 'git://github.com/Shougo/neocomplcache.git'
 NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 NeoBundle 'git://github.com/Shougo/unite.vim.git'
 NeoBundle 'git://github.com/Shougo/vim-vcs.git'
@@ -204,34 +204,31 @@ set backupdir=~/.vim/backup
 set swapfile
 set directory=~/.vim/tmp
 
-set t_Co=256
 set softtabstop=4
 "set expandtab
 set listchars=tab:>-
-highlight SpecialKey ctermfg=1     " ターミナル版での文字色指定
-highlight SpecialKey ctermbg=7     " ターミナル版での背景色指定
-highlight SpecialKey guifg=gray    " GUI版での文字色指定
-highlight SpecialKey guibg=#012345 " GUI版での背景色指定
+"highlight SpecialKey ctermfg=1     " ターミナル版での文字色指定
+"highlight SpecialKey ctermbg=7     " ターミナル版での背景色指定
+"highlight SpecialKey guifg=gray    " GUI版での文字色指定
+"highlight SpecialKey guibg=#012345 " GUI版での背景色指定
 set autoindent
 
 " ファイルが選択されたらウィンドウを閉じる
 ":let g:proj_flags = "imstc"
 
-" <Leader>P プロジェクトとトグルで開閉
-:nmap <silent> <Leader>P <Plug>ToggleProject
-" <Leader>p デフォルトのプロジェクトを開く
-:nmap <silent> <Leader>p :Project<CR>
-
+"" <Leader>P プロジェクトとトグルで開閉
+":nmap <silent> <Leader>P <Plug>ToggleProject
+"" <Leader>p デフォルトのプロジェクトを開く
+":nmap <silent> <Leader>p :Project<CR>
 " git add
-let g:proj_run1='!git add %f'
-let g:proj_run_fold1='*!git add %f'
-
-" git checkout
-let g:proj_run2='git checkout -- %f'
-let g:proj_run_fold="!git checkout -- %f"
-
-" git status
-let g:proj_run3='!git status'
+"let g:proj_run1='!git add %f'
+"let g:proj_run_fold1='*!git add %f'
+"" git checkout
+"let g:proj_run2='git checkout -- %f'
+"let g:proj_run_fold="!git checkout -- %f"
+"" git status
+"let g:proj_run3='!git status'
+"
 
 :set helplang=ja,en
 
@@ -255,9 +252,20 @@ set formatoptions+=mM
 
 
 " vim-colors-solarized
+syntax enable
+set t_Co=256
 set background=dark
 let g:solarized_termcolors=256
+let g:solarized_degrade=0
+let g:solarized_bold=1
+let g:solarized_underline=1
+let g:solarized_italic=1
+let g:solarized_termtrans=0
+let g:solarized_contrast="high"
+let g:solarized_visiBILITY="high"
 colorscheme solarized
+
+call togglebg#map("<F1>")
 
 " クリップボードにコピー
 vmap <C-c> :w !xsel -ib<CR><CR>
@@ -329,7 +337,7 @@ endfunction
 let g:ref_source_webdict_sites.default = 'yahoo'
 nnoremap ,,k :<C-u>Ref webdict<Space><C-r><C-w><CR>
 
-let g:neocomplcache_enable_at_startup = 1
+"let g:neocomplcache_enable_at_startup = 1
 
 "
 " neocomplcache の設定

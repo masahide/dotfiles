@@ -1,0 +1,66 @@
+#!/bin/perl
+
+sub paste_primary {
+	my ($self) = @_;
+	my $o = $self->locale_encode($self->selection);
+	# 自urxvtに選択箇所があるとxselがフリーズするっぽいので場合分け
+	if ($o) {
+		$self->tt_write($o);
+	} else {
+		open my $fh, '-|', qw/xsel/ or die $!;
+		while (<$fh>) {
+			$self->tt_write($_);
+		}
+		close $fh or warn "status: $?";
+	}
+
+	()
+}
+
+sub copy_clipboard {
+	my ($self) = @_;
+
+	my $elite = $self->locale_encode($self->selection);
+	if ($elite) {
+		my $EOF = time();
+		$EOF .= '0' while ($elite =~ /$EOF/);
+		system ("cat<<$EOF | xsel -bi\n$elite\n$EOF\n");
+	} else {
+		#system ("xsel | xsel -bi");
+	}
+
+	()
+}
+
+sub paste_clipboard {
+	my ($self) = @_;
+	open my $fh, '-|', qw/xsel -b/ or die $!;
+	while (<$fh>) {
+		$self->tt_write($_);
+	}
+	close $fh or warn "status: $?";
+
+	()
+}
+
+sub on_user_command {
+	my ($self, $cmd) = @_;
+
+	if ($cmd eq "x-selection:paste_primary") {
+		#$self->tt_write('[p]');
+		$self->paste_primary;
+	}
+
+	if ($cmd eq "x-selection:paste_clipboard") {
+		#$self->tt_write('[c]');
+		$self->paste_clipboard;
+	}
+
+	if ($cmd eq "x-selection:copy_clipboard") {
+		#$self->tt_write('[c]');
+		$self->copy_clipboard;
+	}
+
+	()
+}
+

@@ -75,3 +75,103 @@
 !! white dark/light
 *color7:                S_base2
 *color15:               S_base3
+
+
+
+
+! Xterm settings
+! Main
+XTerm*VT100*utf8:               1
+XTerm*VT100*utf8Title:          true
+XTerm*VT100*faceName:           Ricty for Powerline:style=BoldForPowerline
+XTerm*VT100*faceNameDoublesize:	Ricty for Powerline:style=RegularForPowerline
+XTerm*VT100*faceSize:           12
+XTerm*VT100*locale:             false
+XTerm*VT100*cjkWidth:           true
+!XTerm*VT100*background:         black
+!XTerm*VT100*foreground:         gray90
+XTerm*VT100*saveLines:          1000
+!XTerm*VT100*geometry:           80x25+300+100
+XTerm*VT100*selectToClipboard:  true
+XTerm*VT100*scrollBar:          false
+XTerm*VT100*forcePackedFont:	false
+
+! Cursor
+!XTerm*VT100*cursorBlink:        true
+!XTerm*VT100*cursorColor:        gray50
+
+! Color
+!XTerm*VT100*color0:             black
+!XTerm*VT100*color1:             red3
+!XTerm*VT100*color2:             green3
+!XTerm*VT100*color3:             yellow3
+!XTerm*VT100*color4:             DodgerBlue1
+!XTerm*VT100*color5:             magenta3
+!XTerm*VT100*color6:             cyan3
+!XTerm*VT100*color7:             gray90
+!XTerm*VT100*color8:             gray50
+!XTerm*VT100*color9:             red
+!XTerm*VT100*color10:            green
+!XTerm*VT100*color11:            yellow
+!XTerm*VT100*color12:            blue
+!XTerm*VT100*color13:            magenta
+!XTerm*VT100*color14:            cyan
+!XTerm*VT100*color15:            white
+!XTerm*VT100*colorUL:            yellow
+!XTerm*VT100*colorBD:            white
+!
+
+
+! rxvt-unicode
+!urxvt.termName: rxvt-256color
+urxvt.termName: xterm
+urxvt.saveline: 2000
+!urxvt.transparent: true
+!urxvt.inheritPixmap: true
+!urxvt.foreground: snow
+!urxvt.background: black
+!urxvt.cursorColor: snow
+!urxvt.shading: 20
+!urxvt.preeditType: root
+urxvt.scrollBar: off
+
+!urxvt.perl-lib:			/home/yamasaki_masahide/.urxvt/
+!urxvt.perl-ext-common:	default,x-selection
+!urxvt.keysym.C-M-v: perl:x-selection:paste_primary
+!urxvt.keysym.C-V: perl:x-selection:paste_clipboard
+!urxvt.keysym.C-C: perl:x-selection:copy_clipboard
+
+urxvt.perl-lib:			/home/yamasaki_masahide/.urxvt/urxvt-perls/
+URxvt.perl-ext-common:	keyboard-select,clipboard
+URxvt.keysym.M-Escape:	perl:keyboard-select:activate
+URxvt.keysym.M-s:		perl:keyboard-select:search
+URxvt.keysym.M-c:		perl:clipboard:copy
+URxvt.keysym.M-v:		perl:clipboard:paste
+URxvt.keysym.M-C-v:		perl:clipboard:paste_escaped
+
+urxvt.font:			xft:Ricty for Powerline:style=BoldForPowerline:size=12
+urxvt.boldFont:		xft:Ricty for Powerline:style=RegularForPowerline:size=12
+urxvt.letterSpace:	-2
+urxvt.iso14755_52:	off
+urxvt.iso14755:		off
+urxvt.tripleclickwords: on
+urxvt*keysym.Home:		\033[1~
+urxvt*keysym.End:		\033[4~
+
+!urxvt.color0:    #6c6c6c
+!urxvt.color1:    #e9897c
+!urxvt.color2:    #b6e77d
+!urxvt.color3:    #ecebbe
+!urxvt.color4:    #a9cdeb
+!urxvt.color5:    #ea96eb
+!urxvt.color6:    #c9caec
+!urxvt.color7:    #f2f2f2
+!urxvt.color8:    #747474
+!urxvt.color9:    #f99286
+!urxvt.color10:    #c3f786
+!urxvt.color11:    #fcfbcc
+!urxvt.color12:    #b6defb
+!urxvt.color13:    #fba1fb
+!urxvt.color14:    #d7d9fc
+!urxvt.color15:    #e2e2e2
+

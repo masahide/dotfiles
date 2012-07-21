@@ -2,8 +2,8 @@
 " MAIN CUSTOMIZATION FILE
 "
 
-set nocompatible
-filetype off
+"set nocompatible
+"filetype off
 
 if has('vim_starting')
 	set runtimepath+=~/.vim/neobundle.vim.git
@@ -12,12 +12,12 @@ endif
 
 NeoBundle 'git://github.com/Shougo/clang_complete.git'
 NeoBundle 'git://github.com/Shougo/echodoc.git'
-NeoBundle 'git://github.com/Shougo/neocomplcache.git'
+"NeoBundle 'git://github.com/Shougo/neocomplcache.git'
 NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 NeoBundle 'git://github.com/Shougo/unite.vim.git'
 NeoBundle 'git://github.com/Shougo/vim-vcs.git'
-NeoBundle 'git://github.com/Shougo/vimfiler.git'
-NeoBundle 'git://github.com/Shougo/vimshell.git'
+"NeoBundle 'git://github.com/Shougo/vimfiler.git'
+"NeoBundle 'git://github.com/Shougo/vimshell.git'
 NeoBundle 'git://github.com/Shougo/vinarise.git'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'git://github.com/altercation/vim-colors-solarized.git'
@@ -348,3 +348,4 @@ let g:neocomplcache_enable_at_startup = 1
 "endfunction
 "inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
+set clipboard=unnamed,autoselect

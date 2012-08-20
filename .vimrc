@@ -23,7 +23,7 @@ NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'git://github.com/altercation/vim-colors-solarized.git'
 NeoBundle 'git://github.com/thinca/vim-ref.git'
 NeoBundle 'git://github.com/tpope/vim-fugitive.git'
-NeoBundle 'git://github.com/joonty/vim-xdebug.git'
+"NeoBundle 'git://github.com/joonty/vim-xdebug.git'
 
 " Enable loading filetype and indentation plugins
 filetype plugin on
@@ -264,6 +264,7 @@ let g:solarized_termtrans=0
 "let g:solarized_contrast="high"
 "let g:solarized_visiBILITY="high"
 colorscheme solarized
+"colorscheme wombat256
 
 call togglebg#map("<F1>")
 

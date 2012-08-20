@@ -123,10 +123,16 @@ XTerm*VT100*forcePackedFont:	false
 
 
 ! rxvt-unicode
-!urxvt.termName: rxvt-256color
-urxvt.termName: xterm
+urxvt.termName: rxvt-256color
+urxvt.depth: 32
+!urxvt.termName: xterm
 urxvt.saveline: 2000
-!urxvt.transparent: true
+urxvt.transparent: false
+urxvt.fading:               0
+urxvt.loginShell:           true
+urxvt.saveLines:            200
+urxvt.internalBorder:       3
+urxvt.lineSpace:            0
 !urxvt.inheritPixmap: true
 !urxvt.foreground: snow
 !urxvt.background: black
@@ -134,6 +140,8 @@ urxvt.saveline: 2000
 !urxvt.shading: 20
 !urxvt.preeditType: root
 urxvt.scrollBar: off
+URxvt.scrollStyle:          rxvt
+urxvt.pointerBlank:         true
 
 !urxvt.perl-lib:			/home/yamasaki_masahide/.urxvt/
 !urxvt.perl-ext-common:	default,x-selection
@@ -156,8 +164,7 @@ urxvt.iso14755_52:	off
 urxvt.iso14755:		off
 urxvt.tripleclickwords: on
 urxvt*keysym.Home:		\033[1~
-urxvt*keysym.End:		\033[4~
-
+urxvt*keysym.End:		\033[4~ 
 !urxvt.color0:    #6c6c6c
 !urxvt.color1:    #e9897c
 !urxvt.color2:    #b6e77d

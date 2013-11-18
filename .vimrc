@@ -3,6 +3,7 @@
 "
 
 "set nocompatible
+filetype on
 filetype off
 
 if has('vim_starting')
@@ -10,12 +11,12 @@ if has('vim_starting')
 	call neobundle#rc(expand('~/.vim/.bundle'))
 endif
 
-NeoBundle 'git://github.com/Shougo/clang_complete.git'
-NeoBundle 'git://github.com/Shougo/echodoc.git'
+"NeoBundle 'git://github.com/Shougo/clang_complete.git'
+"NeoBundle 'git://github.com/Shougo/echodoc.git'
 "NeoBundle 'git://github.com/Shougo/neocomplcache.git'
-NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
+"NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 NeoBundle 'git://github.com/Shougo/unite.vim.git'
-NeoBundle 'git://github.com/Shougo/vim-vcs.git'
+"NeoBundle 'git://github.com/Shougo/vim-vcs.git'
 "NeoBundle 'git://github.com/Shougo/vimfiler.git'
 "NeoBundle 'git://github.com/Shougo/vimshell.git'
 NeoBundle 'git://github.com/Shougo/vinarise.git'
@@ -23,7 +24,11 @@ NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'git://github.com/altercation/vim-colors-solarized.git'
 NeoBundle 'git://github.com/thinca/vim-ref.git'
 NeoBundle 'git://github.com/tpope/vim-fugitive.git'
-NeoBundle 'git://github.com/joonty/vim-xdebug.git'
+"NeoBundle 'git://github.com/joonty/vim-xdebug.git'
+NeoBundle 'git://github.com/kana/vim-fakeclip.git'
+NeoBundle 'https://github.com/fuenor/im_control.vim.git'
+NeoBundle 'git://github.com/scrooloose/nerdtree.git'
+NeoBundle 'matchit.zip'
 
 " Enable loading filetype and indentation plugins
 filetype plugin on
@@ -31,6 +36,11 @@ filetype indent on
 
 " Turn syntax highlighting on
 syntax on
+
+
+if has('mac')
+	set g:disable_IM_Control = 1
+endif
 
 "
 " GLOBAL SETTINGS
@@ -357,3 +367,12 @@ nnoremap ,,k :<C-u>Ref webdict<Space><C-r><C-w><CR>
 "inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
 set clipboard=unnamed,autoselect
+
+" copy and paste with fakeclip
+" See: :h fakeclip-multibyte-on-mac
+"map gy "*y
+"map gp "*p
+"if exists('$WINDOW') || exists('$TMUX')
+"    map gY <Plug>(fakeclip-screen-y)
+"    map gP <Plug>(fakeclip-screen-p)
+"endif

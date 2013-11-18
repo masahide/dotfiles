@@ -31,11 +31,11 @@ case "$1" in
 	unlink-dot-file
 	;;
   git_submodule)
-	git submodule init
-	git submodule update
+	git submodule update --init
 	;;
   all|*)
 	link-dot-file
+	git submodule update --init
 	;;
 esac
 

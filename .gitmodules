@@ -1,3 +1,6 @@
 [submodule ".vim/neobundle.vim.git"]
 	path = .vim/neobundle.vim.git
 	url = https://github.com/Shougo/neobundle.vim
+[submodule ".urxvt/urxvt-perls"]
+	path = .urxvt/urxvt-perls
+	url = git@github.com:masahide/urxvt-perls.git

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=".vim .vimrc .tmux.conf .Xresources .bash_aliases .urxvt"
+DOT_FILES=".vim .vimrc .tmux.conf .bash_aliases"
 
 
 CURDIR=`basename \`pwd\``
@@ -9,13 +9,6 @@ function link-dot-file(){
 	for f in $DOT_FILES 
 	do
 		case $f in
-			".Xresources")
-				if [ -f /usr/bin/xrdb ]; then
-					ln -snf $CURDIR/$f ${HOME}/$f
-					/usr/bin/xrdb -remove
-					/usr/bin/xrdb -merge ~/.Xresources
-				fi
-				;;
 			*)
 				ln -snf $CURDIR/$f ${HOME}/$f
 				;;

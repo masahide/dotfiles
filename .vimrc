@@ -12,9 +12,11 @@ if has('vim_starting')
 endif
 
 "NeoBundle 'git://github.com/Shougo/clang_complete.git'
-"NeoBundle 'git://github.com/Shougo/echodoc.git'
+NeoBundle 'git://github.com/Shougo/echodoc.git'
+NeoBundle 'git://github.com/Shougo/vimproc'
 "NeoBundle 'git://github.com/Shougo/neocomplcache.git'
-"NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
+"NeoBundle 'git://github.com/Shougo/neosnippet.git'
+NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 NeoBundle 'git://github.com/Shougo/unite.vim.git'
 "NeoBundle 'git://github.com/Shougo/vim-vcs.git'
 "NeoBundle 'git://github.com/Shougo/vimfiler.git'
@@ -274,6 +276,7 @@ let g:solarized_termtrans=0
 "let g:solarized_contrast="high"
 "let g:solarized_visiBILITY="high"
 colorscheme solarized
+"colorscheme wombat256
 
 call togglebg#map("<F1>")
 
@@ -308,19 +311,19 @@ function! s:unite_my_settings()
 	" Overwrite settings.
 endfunction
 " 様々なショートカット
-call unite#set_substitute_pattern('file', '\$\w\+', '\=eval(submatch(0))', 200)
-call unite#set_substitute_pattern('file', '^@@', '\=fnamemodify(expand("#"), ":p:h")."/"', 2)
-call unite#set_substitute_pattern('file', '^@', '\=getcwd()."/*"', 1)
-call unite#set_substitute_pattern('file', '^;r', '\=$VIMRUNTIME."/"')
-call unite#set_substitute_pattern('file', '^\~', escape($HOME, '\'), -2)
-call unite#set_substitute_pattern('file', '\\\@<! ', '\\ ', -20)
-call unite#set_substitute_pattern('file', '\\ \@!', '/', -30)
-if has('win32') || has('win64')
-	call unite#set_substitute_pattern('file', '^;p', 'C:/Program Files/')
-	call unite#set_substitute_pattern('file', '^;v', '~/vimfiles/')
-else
-	call unite#set_substitute_pattern('file', '^;v', '~/.vim/')
-endif
+"call unite#set_substitute_pattern('file', '\$\w\+', '\=eval(submatch(0))', 200)
+"call unite#set_substitute_pattern('file', '^@@', '\=fnamemodify(expand("#"), ":p:h")."/"', 2)
+"call unite#set_substitute_pattern('file', '^@', '\=getcwd()."/*"', 1)
+"call unite#set_substitute_pattern('file', '^;r', '\=$VIMRUNTIME."/"')
+"call unite#set_substitute_pattern('file', '^\~', escape($HOME, '\'), -2)
+"call unite#set_substitute_pattern('file', '\\\@<! ', '\\ ', -20)
+"call unite#set_substitute_pattern('file', '\\ \@!', '/', -30)
+"if has('win32') || has('win64')
+"	call unite#set_substitute_pattern('file', '^;p', 'C:/Program Files/')
+"	call unite#set_substitute_pattern('file', '^;v', '~/vimfiles/')
+"else
+"	call unite#set_substitute_pattern('file', '^;v', '~/.vim/')
+"endif
 
 " ref-vim
 let g:ref_phpmanual_path = $HOME . '/.vim/phpdoc/php-chunked-xhtml'
@@ -347,7 +350,6 @@ endfunction
 let g:ref_source_webdict_sites.default = 'yahoo'
 nnoremap ,,k :<C-u>Ref webdict<Space><C-r><C-w><CR>
 
-"let g:neocomplcache_enable_at_startup = 1
 
 "
 " neocomplcache の設定
@@ -366,13 +368,57 @@ nnoremap ,,k :<C-u>Ref webdict<Space><C-r><C-w><CR>
 "endfunction
 "inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
-set clipboard=unnamed,autoselect
+set clipboard+=unnamed,autoselect
 
-" copy and paste with fakeclip
-" See: :h fakeclip-multibyte-on-mac
-"map gy "*y
-"map gp "*p
-"if exists('$WINDOW') || exists('$TMUX')
-"    map gY <Plug>(fakeclip-screen-y)
-"    map gP <Plug>(fakeclip-screen-p)
-"endif
+set modeline
+
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Use camel case completion.
+let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+let g:neocomplcache_enable_underbar_completion = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+"let g:neocomplcache_dictionary_filetype_lists = {
+"    \ 'default' : '',
+"    \ 'vimshell' : $HOME.'/.vimshell_hist',
+"    \ 'scheme' : $HOME.'/.gosh_completions'
+"        \ }
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+let g:neosnippet#snippets_directory= $HOME . '/.vim/snippets'
+
+""
+"" neocomplcache & neosnippet
+""
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+
+function! Cucfirst(str)
+	return substitute(strpart(a:str,0,strlen(a:str)-4), '\w\+', '\u\0', "")
+endfunction
+
+function! CiFilePos(str)
+	if a:str =~ ".\.system.\."
+		return '.' . matchstr(a:str, "\/system/.*$")
+	elseif a:str =~ ".\.application.\."
+		return '.' . matchstr(a:str, "\/application/.*$")
+	else
+		return a:str
+endfunction
+
+

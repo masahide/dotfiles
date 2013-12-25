@@ -22,7 +22,8 @@ NeoBundle 'git://github.com/Shougo/unite.vim.git'
 "NeoBundle 'git://github.com/Shougo/vimfiler.git'
 "NeoBundle 'git://github.com/Shougo/vimshell.git'
 NeoBundle 'git://github.com/Shougo/vinarise.git'
-NeoBundle 'Lokaltog/vim-powerline'
+"NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'git@github.com:itchyny/lightline.vim.git'
 NeoBundle 'git://github.com/altercation/vim-colors-solarized.git'
 NeoBundle 'git://github.com/thinca/vim-ref.git'
 NeoBundle 'git://github.com/tpope/vim-fugitive.git'
@@ -245,7 +246,7 @@ set autoindent
 
 :set helplang=ja,en
 
-let g:Powerline_symbols = 'fancy'
+"let g:Powerline_symbols = 'fancy'
 
 " 「日本語入力固定モード」切替キー
 inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
@@ -267,13 +268,13 @@ set formatoptions+=mM
 " vim-colors-solarized
 syntax enable
 set t_Co=256
-set background=light
+set background=dark
 let g:solarized_termcolors=256
 let g:solarized_degrade=0
 let g:solarized_bold=1
 let g:solarized_underline=1
 let g:solarized_italic=1
-let g:solarized_termtrans=0
+let g:solarized_termtrans=1
 "let g:solarized_contrast="high"
 "let g:solarized_visiBILITY="high"
 colorscheme solarized

@@ -30,6 +30,7 @@ NeoBundle 'git://github.com/tpope/vim-fugitive.git'
 NeoBundle 'git://github.com/kana/vim-fakeclip.git'
 NeoBundle 'https://github.com/fuenor/im_control.vim.git'
 NeoBundle 'git://github.com/scrooloose/nerdtree.git'
+NeoBundle 'Blackrush/vim-gocode'
 NeoBundle 'matchit.zip'
 
 " Enable loading filetype and indentation plugins

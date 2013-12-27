@@ -26,4 +26,6 @@ endif
 "setlocal ofu=MyPHPComplete
 
 
+set dictionary=~/.vim/dict/php.dict
 
+"autocmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else | cclose | endif

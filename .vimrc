@@ -31,6 +31,7 @@ NeoBundle 'git://github.com/tpope/vim-fugitive.git'
 NeoBundle 'git://github.com/kana/vim-fakeclip.git'
 NeoBundle 'https://github.com/fuenor/im_control.vim.git'
 NeoBundle 'git://github.com/scrooloose/nerdtree.git'
+NeoBundle 'git://github.com/scrooloose/syntastic.git'
 NeoBundle 'Blackrush/vim-gocode'
 NeoBundle 'matchit.zip'
 
@@ -370,7 +371,7 @@ nnoremap ,,k :<C-u>Ref webdict<Space><C-r><C-w><CR>
 "endfunction
 "inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
-set clipboard+=unnamed,autoselect
+set clipboard+=unnamedplus,autoselect
 
 set modeline
 
@@ -423,4 +424,30 @@ function! CiFilePos(str)
 		return a:str
 endfunction
 
+
+function! s:Paste64Copy() range
+	let l:tmp = @@
+	silent normal gvy
+	let l:selected = @@
+	let l:i = 0
+	let l:len = strlen(l:selected)
+	let l:escaped = ''
+	while l:i < l:len
+		let l:c = strpart(l:selected, l:i, 1)
+		let l:escaped .= printf("\\u%04x", char2nr(l:c))
+		let l:i = l:i + 1
+	endwhile
+	if $TMUX != ""
+		"tmuxのとき
+		call system('printf "\x1bPtmux;\x1b\x1b]52;;%s\x1b\x1b\\\\\x1b\\" `echo -en "' . l:escaped . '" | base64` > /dev/tty')
+	elseif $TERM == "screen"
+		"GNU Screenのとき
+		call system('printf "\x1bP\x1b]52;;%s\x07\x1b\\" `echo -en "' . l:escaped . '" | base64` > /dev/tty')
+	else
+		call system('printf "\x1b]52;;%s\x1b\\" `echo -en "' . l:escaped . '" | base64` > /dev/tty')
+	endif
+	redraw!
+endfunction
+
+command! -range Paste64Copy :call s:Paste64Copy()
 

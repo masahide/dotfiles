@@ -450,3 +450,6 @@ endfunction
 
 command! -range Paste64Copy :call s:Paste64Copy()
 
+if $GOROOT != ''
+	  set rtp+=$GOROOT/misc/vim
+endif

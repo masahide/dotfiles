@@ -6,6 +6,7 @@
 filetype on
 filetype off
 
+" for Neobundle {{{
 if has('vim_starting')
 	set runtimepath+=~/.vim/neobundle.vim.git
 	call neobundle#rc(expand('~/.vim/.bundle'))
@@ -32,7 +33,15 @@ NeoBundle 'git://github.com/kana/vim-fakeclip.git'
 NeoBundle 'https://github.com/fuenor/im_control.vim.git'
 NeoBundle 'git://github.com/scrooloose/nerdtree.git'
 NeoBundle 'git://github.com/scrooloose/syntastic.git'
+NeoBundle 'Blackrush/vim-gocode'
 NeoBundle 'matchit.zip'
+
+"golang vim http://qiita.com/shiena/items/870ac0f1db8e9a8672a7
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'git://github.com/Shougo/vimfiler.git'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'soh335/unite-outline-go'
+NeoBundle 'dgryski/vim-godef'
 
 " Enable loading filetype and indentation plugins
 filetype plugin on
@@ -40,7 +49,8 @@ filetype indent on
 
 " Turn syntax highlighting on
 syntax on
-
+NeoBundleCheck
+" }}}
 
 if has('mac')
 	set g:disable_IM_Control = 1
@@ -450,6 +460,50 @@ endfunction
 
 command! -range Paste64Copy :call s:Paste64Copy()
 
+
+"golang vim http://qiita.com/shiena/items/870ac0f1db8e9a8672a7
+" for golang {{{
 if $GOROOT != ''
-	  set rtp+=$GOROOT/misc/vim
+	set rtp+=$GOROOT/misc/vim
 endif
+if $GOPATH != ''
+	set rtp^=$GOPATH/src/github.com/nsf/gocode/vim
+	set path+=$GOPATH/src
+endif
+let g:gofmt_command = 'goimports'
+au BufWritePre *.go Fmt
+au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4 completeopt=menu,preview
+au FileType go compiler go
+
+"}}}
+
+" VimFilerTree {{{
+command! VimFilerTree call VimFilerTree()
+function VimFilerTree()
+	exec ':VimFiler -buffer-name=explorer -split -simple -winwidth=45 -toggle -no-quit'
+	wincmd t
+	setl winfixwidth
+endfunction
+autocmd! FileType vimfiler call g:my_vimfiler_settings()
+function! g:my_vimfiler_settings()
+	nmap     <buffer><expr><CR> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
+	nnoremap <buffer>s          :call vimfiler#mappings#do_action('my_split')<CR>
+	nnoremap <buffer>v          :call vimfiler#mappings#do_action('my_vsplit')<CR>
+endfunction
+
+let my_action = {'is_selectable' : 1}
+function! my_action.func(candidates)
+	wincmd p
+	exec 'split '. a:candidates[0].action__path
+endfunction
+call unite#custom_action('file', 'my_split', my_action)
+
+let my_action = {'is_selectable' : 1}
+function! my_action.func(candidates)
+	wincmd p
+	exec 'vsplit '. a:candidates[0].action__path
+endfunction
+call unite#custom_action('file', 'my_vsplit', my_action)
+" }}}
+
+

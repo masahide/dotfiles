@@ -2,15 +2,20 @@
 " MAIN CUSTOMIZATION FILE
 "
 
-"set nocompatible
-filetype on
-filetype off
 
 " for Neobundle {{{
-if has('vim_starting')
-	set runtimepath+=~/.vim/neobundle.vim.git
-	call neobundle#rc(expand('~/.vim/.bundle'))
+
+if has('win32')
+	let s:vim_home=expand('~/vimfiles')
+else
+	let s:vim_home=expand('~/.vim')
 endif
+if has('vim_starting')
+	let &runtimepath.=printf(',%s/neobundle.vim.git', s:vim_home)
+    call neobundle#rc(expand(s:vim_home.'/.bundle'))
+endif
+
+set nocompatible
 
 "NeoBundle 'git://github.com/Shougo/clang_complete.git'
 NeoBundle 'git://github.com/Shougo/echodoc.git'

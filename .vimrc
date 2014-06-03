@@ -511,4 +511,4 @@ endfunction
 call unite#custom_action('file', 'my_vsplit', my_action)
 " }}}
 
-
+set cmdheight=1

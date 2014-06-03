@@ -57,9 +57,9 @@ syntax on
 NeoBundleCheck
 " }}}
 
-if has('mac')
-	set g:disable_IM_Control = 1
-endif
+"if has('mac')
+"	set g:disable_IM_Control = 1
+"endif
 
 "
 " GLOBAL SETTINGS

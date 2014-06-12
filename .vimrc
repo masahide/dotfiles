@@ -40,6 +40,7 @@ NeoBundle 'git://github.com/scrooloose/nerdtree.git'
 NeoBundle 'git://github.com/scrooloose/syntastic.git'
 NeoBundle 'Blackrush/vim-gocode'
 NeoBundle 'matchit.zip'
+NeoBundle 'git@github.com:vim-php/tagbar-phpctags.vim.git'
 
 "golang vim http://qiita.com/shiena/items/870ac0f1db8e9a8672a7
 NeoBundle 'majutsushi/tagbar'

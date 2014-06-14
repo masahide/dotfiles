@@ -391,11 +391,10 @@ nnoremap ,,k :<C-u>Ref webdict<Space><C-r><C-w><CR>
 "endfunction
 "inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
-set clipboard=unnamed,autoselect
 if has('mac')
-	set clipboard+=unnamedplus,autoselect
+    set clipboard=unnamed,autoselect
 else
-	set clipboard=unnamed,autoselect
+	set clipboard+=unnamedplus,autoselect
 endif
 
 

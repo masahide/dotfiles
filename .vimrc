@@ -38,7 +38,7 @@ NeoBundle 'git://github.com/kana/vim-fakeclip.git'
 NeoBundle 'https://github.com/fuenor/im_control.vim.git'
 NeoBundle 'git://github.com/scrooloose/nerdtree.git'
 NeoBundle 'git://github.com/scrooloose/syntastic.git'
-NeoBundle 'Blackrush/vim-gocode'
+"NeoBundle 'Blackrush/vim-gocode'
 NeoBundle 'matchit.zip'
 NeoBundle 'vim-scripts/tagbar-phpctags',{
   \   'build' : {
@@ -53,6 +53,8 @@ NeoBundle 'git://github.com/Shougo/vimfiler.git'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'soh335/unite-outline-go'
 NeoBundle 'dgryski/vim-godef'
+NeoBundle 'https://github.com/fatih/vim-go'
+NeoBundle 'https://github.com/vim-jp/vim-go-extra.git'
 
 " Enable loading filetype and indentation plugins
 filetype plugin on

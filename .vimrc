@@ -55,6 +55,8 @@ NeoBundle 'soh335/unite-outline-go'
 NeoBundle 'dgryski/vim-godef'
 NeoBundle 'https://github.com/fatih/vim-go'
 NeoBundle 'https://github.com/vim-jp/vim-go-extra.git'
+NeoBundle 'git://github.com/ClockworkNet/vim-junos-syntax.git'
+NeoBundle 'junegunn/vim-easy-align'
 
 " Enable loading filetype and indentation plugins
 filetype plugin on
@@ -393,11 +395,10 @@ nnoremap ,,k :<C-u>Ref webdict<Space><C-r><C-w><CR>
 "endfunction
 "inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
-set clipboard=unnamed,autoselect
 if has('mac')
-	set clipboard+=unnamedplus,autoselect
+    set clipboard=autoselect
 else
-	set clipboard=unnamed,autoselect
+	set clipboard+=unnamedplus,autoselect
 endif
 
 
@@ -504,11 +505,11 @@ function VimFilerTree()
 	setl winfixwidth
 endfunction
 autocmd! FileType vimfiler call g:my_vimfiler_settings()
-function! g:my_vimfiler_settings()
-	nmap     <buffer><expr><CR> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
-	nnoremap <buffer>s          :call vimfiler#mappings#do_action('my_split')<CR>
-	nnoremap <buffer>v          :call vimfiler#mappings#do_action('my_vsplit')<CR>
-endfunction
+"function! g:my_vimfiler_settings()
+"	nmap     <buffer><expr><CR> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
+"	nnoremap <buffer>s          :call vimfiler#mappings#do_action('my_split')<CR>
+"	nnoremap <buffer>v          :call vimfiler#mappings#do_action('my_vsplit')<CR>
+"endfunction
 
 let my_action = {'is_selectable' : 1}
 function! my_action.func(candidates)

@@ -53,6 +53,8 @@ NeoBundle 'git://github.com/Shougo/vimfiler.git'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'soh335/unite-outline-go'
 NeoBundle 'dgryski/vim-godef'
+NeoBundle 'git://github.com/ClockworkNet/vim-junos-syntax.git'
+NeoBundle 'junegunn/vim-easy-align'
 
 " Enable loading filetype and indentation plugins
 filetype plugin on
@@ -501,11 +503,11 @@ function VimFilerTree()
 	setl winfixwidth
 endfunction
 autocmd! FileType vimfiler call g:my_vimfiler_settings()
-function! g:my_vimfiler_settings()
-	nmap     <buffer><expr><CR> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
-	nnoremap <buffer>s          :call vimfiler#mappings#do_action('my_split')<CR>
-	nnoremap <buffer>v          :call vimfiler#mappings#do_action('my_vsplit')<CR>
-endfunction
+"function! g:my_vimfiler_settings()
+"	nmap     <buffer><expr><CR> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
+"	nnoremap <buffer>s          :call vimfiler#mappings#do_action('my_split')<CR>
+"	nnoremap <buffer>v          :call vimfiler#mappings#do_action('my_vsplit')<CR>
+"endfunction
 
 let my_action = {'is_selectable' : 1}
 function! my_action.func(candidates)

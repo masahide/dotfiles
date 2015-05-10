@@ -5,7 +5,7 @@
 
 " for Neobundle {{{
 
-et s:vim_home=expand('~/.vim')
+let s:vim_home=expand('~/.vim')
 if has('vim_starting')
 	let &runtimepath.=printf(',%s/neobundle.vim.git', s:vim_home)
     call neobundle#rc(expand(s:vim_home.'/.bundle'))

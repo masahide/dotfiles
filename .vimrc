@@ -49,12 +49,15 @@ NeoBundle 'vim-scripts/tagbar-phpctags',{
 
 "golang vim http://qiita.com/shiena/items/870ac0f1db8e9a8672a7
 NeoBundle 'majutsushi/tagbar'
-NeoBundle 'git://github.com/Shougo/vimfiler.git'
-NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'soh335/unite-outline-go'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle 'dgryski/vim-godef'
+NeoBundle 'vim-jp/vim-go-extra'
+" vim-ft-goは最新版のvimを使えない場合のみ
+NeoBundle 'google/vim-ft-go'
 NeoBundle 'https://github.com/fatih/vim-go'
-NeoBundle 'https://github.com/vim-jp/vim-go-extra.git'
+
+
 NeoBundle 'git://github.com/ClockworkNet/vim-junos-syntax.git'
 NeoBundle 'junegunn/vim-easy-align'
 

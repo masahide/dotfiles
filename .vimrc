@@ -50,7 +50,7 @@ NeoBundle 'Shougo/unite-outline'
 NeoBundle 'dgryski/vim-godef'
 NeoBundle 'vim-jp/vim-go-extra'
 " vim-ft-goは最新版のvimを使えない場合のみ
-NeoBundle 'google/vim-ft-go'
+" NeoBundle 'google/vim-ft-go'
 NeoBundle 'https://github.com/fatih/vim-go'
 
 
@@ -490,9 +490,6 @@ command! -range Paste64Copy :call s:Paste64Copy()
 
 "golang vim http://qiita.com/shiena/items/870ac0f1db8e9a8672a7
 " for golang {{{
-if $GOROOT != ''
-	set rtp+=$GOROOT/misc/vim
-endif
 if $GOPATH != ''
 	set rtp^=$GOPATH/src/github.com/nsf/gocode/vim
 	set path+=$GOPATH/src

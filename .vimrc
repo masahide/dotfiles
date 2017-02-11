@@ -5,11 +5,7 @@
 
 " for Neobundle {{{
 
-if has('win32')
-	let s:vim_home=expand('~/vimfiles')
-else
-	let s:vim_home=expand('~/.vim')
-endif
+let s:vim_home=expand('~/.vim')
 if has('vim_starting')
 	let &runtimepath.=printf(',%s/neobundle.vim.git', s:vim_home)
     call neobundle#rc(expand(s:vim_home.'/.bundle'))
@@ -84,8 +80,14 @@ set backspace=indent,eol,start
 " Insert mode completion options
 set completeopt=menu,longest,preview
 
+
+if has('win32')
+    set enc=cp932
+else
 " Use UTF-8 as the default buffer encoding
-set enc=utf-8
+    set enc=utf-8
+endif
+
 
 " Remember up to 100 'colon' commmands and search patterns
 set history=1000
@@ -398,8 +400,10 @@ nnoremap ,,k :<C-u>Ref webdict<Space><C-r><C-w><CR>
 
 if has('mac')
     set clipboard=autoselect
+elseif has('win32')
+    set clipboard=unnamed,autoselect
 else
-	set clipboard+=unnamedplus,autoselect
+    set clipboard+=unnamedplus,autoselect
 endif
 
 

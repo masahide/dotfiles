@@ -3,69 +3,70 @@
 "
 
 
-" for Neobundle {{{
+if version > 720
+	" for Neobundle {{{
+	let s:vim_home=expand('~/.vim')
+	if has('vim_starting')
+		let &runtimepath.=printf(',%s/neobundle.vim.git', s:vim_home)
+		call neobundle#rc(expand(s:vim_home.'/.bundle'))
+	endif
 
-let s:vim_home=expand('~/.vim')
-if has('vim_starting')
-	let &runtimepath.=printf(',%s/neobundle.vim.git', s:vim_home)
-    call neobundle#rc(expand(s:vim_home.'/.bundle'))
+	set nocompatible
+
+	"NeoBundle 'git://github.com/Shougo/clang_complete.git'
+	NeoBundle 'git://github.com/Shougo/echodoc.git'
+	NeoBundle 'git://github.com/Shougo/vimproc'
+	"NeoBundle 'git://github.com/Shougo/neocomplcache.git'
+	"NeoBundle 'git://github.com/Shougo/neosnippet.git'
+	NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
+	NeoBundle 'git://github.com/Shougo/unite.vim.git'
+	"NeoBundle 'git://github.com/Shougo/vim-vcs.git'
+	"NeoBundle 'git://github.com/Shougo/vimfiler.git'
+	"NeoBundle 'git://github.com/Shougo/vimshell.git'
+	NeoBundle 'git://github.com/Shougo/vinarise.git'
+	"NeoBundle 'Lokaltog/vim-powerline'
+	NeoBundle 'git@github.com:itchyny/lightline.vim.git'
+	NeoBundle 'git://github.com/altercation/vim-colors-solarized.git'
+	NeoBundle 'git://github.com/thinca/vim-ref.git'
+	NeoBundle 'git://github.com/tpope/vim-fugitive.git'
+	"NeoBundle 'git://github.com/joonty/vim-xdebug.git'
+	NeoBundle 'git://github.com/kana/vim-fakeclip.git'
+	NeoBundle 'https://github.com/fuenor/im_control.vim.git'
+	NeoBundle 'git://github.com/scrooloose/nerdtree.git'
+	NeoBundle 'git://github.com/scrooloose/syntastic.git'
+	NeoBundle 'Blackrush/vim-gocode'
+	NeoBundle 'matchit.zip'
+	NeoBundle 'vim-scripts/tagbar-phpctags',{
+	\   'build' : {
+	\     'windows' : '',
+	\     'others' : 'chmod +x bin/phpctags',
+	\   },
+	\ }
+
+	"golang vim http://qiita.com/shiena/items/870ac0f1db8e9a8672a7
+	NeoBundle 'majutsushi/tagbar'
+	NeoBundle 'Shougo/vimfiler'
+	NeoBundle 'Shougo/unite-outline'
+	NeoBundle 'dgryski/vim-godef'
+	NeoBundle 'vim-jp/vim-go-extra'
+	" vim-ft-goは最新版のvimを使えない場合のみ
+	" NeoBundle 'google/vim-ft-go'
+	NeoBundle 'https://github.com/fatih/vim-go'
+
+
+	NeoBundle 'git://github.com/ClockworkNet/vim-junos-syntax.git'
+	NeoBundle 'junegunn/vim-easy-align'
+	NeoBundle 'fisadev/vim-isort'
+
+	NeoBundleCheck
+	" }}}
 endif
-
-set nocompatible
-
-"NeoBundle 'git://github.com/Shougo/clang_complete.git'
-NeoBundle 'git://github.com/Shougo/echodoc.git'
-NeoBundle 'git://github.com/Shougo/vimproc'
-"NeoBundle 'git://github.com/Shougo/neocomplcache.git'
-"NeoBundle 'git://github.com/Shougo/neosnippet.git'
-NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
-NeoBundle 'git://github.com/Shougo/unite.vim.git'
-"NeoBundle 'git://github.com/Shougo/vim-vcs.git'
-"NeoBundle 'git://github.com/Shougo/vimfiler.git'
-"NeoBundle 'git://github.com/Shougo/vimshell.git'
-NeoBundle 'git://github.com/Shougo/vinarise.git'
-"NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'git@github.com:itchyny/lightline.vim.git'
-NeoBundle 'git://github.com/altercation/vim-colors-solarized.git'
-NeoBundle 'git://github.com/thinca/vim-ref.git'
-NeoBundle 'git://github.com/tpope/vim-fugitive.git'
-"NeoBundle 'git://github.com/joonty/vim-xdebug.git'
-NeoBundle 'git://github.com/kana/vim-fakeclip.git'
-NeoBundle 'https://github.com/fuenor/im_control.vim.git'
-NeoBundle 'git://github.com/scrooloose/nerdtree.git'
-NeoBundle 'git://github.com/scrooloose/syntastic.git'
-NeoBundle 'Blackrush/vim-gocode'
-NeoBundle 'matchit.zip'
-NeoBundle 'vim-scripts/tagbar-phpctags',{
-  \   'build' : {
-  \     'windows' : '',
-  \     'others' : 'chmod +x bin/phpctags',
-  \   },
-  \ }
-
-"golang vim http://qiita.com/shiena/items/870ac0f1db8e9a8672a7
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'dgryski/vim-godef'
-NeoBundle 'vim-jp/vim-go-extra'
-" vim-ft-goは最新版のvimを使えない場合のみ
-" NeoBundle 'google/vim-ft-go'
-NeoBundle 'https://github.com/fatih/vim-go'
-
-
-NeoBundle 'git://github.com/ClockworkNet/vim-junos-syntax.git'
-NeoBundle 'junegunn/vim-easy-align'
-NeoBundle 'fisadev/vim-isort'
 
 " Enable loading filetype and indentation plugins
 filetype plugin on
 filetype indent on
-
 " Turn syntax highlighting on
 syntax on
-NeoBundleCheck
-" }}}
 
 "if has('mac')
 "	set g:disable_IM_Control = 1
@@ -296,22 +297,25 @@ set wildmenu
 set formatoptions+=mM
 
 
+if version > 720
 " vim-colors-solarized
-syntax enable
-set t_Co=256
-set background=dark
-let g:solarized_termcolors=256
-let g:solarized_degrade=0
-let g:solarized_bold=1
-let g:solarized_underline=1
-let g:solarized_italic=1
-let g:solarized_termtrans=1
-"let g:solarized_contrast="high"
-"let g:solarized_visiBILITY="high"
-colorscheme solarized
-"colorscheme wombat256
+	syntax enable
+	set t_Co=256
+	set background=dark
+	let g:solarized_termcolors=256
+	let g:solarized_degrade=0
+	let g:solarized_bold=1
+	let g:solarized_underline=1
+	let g:solarized_italic=1
+	let g:solarized_termtrans=1
+	"let g:solarized_contrast="high"
+	"let g:solarized_visiBILITY="high"
+	colorscheme solarized
+	"colorscheme wombat256
+	
+	call togglebg#map("<F1>")
+endif
 
-call togglebg#map("<F1>")
 
 " クリップボードにコピー
 vmap <C-c> :w !xsel -ib<CR><CR>
@@ -527,34 +531,36 @@ let g:syntastic_go_checkers = ['go', 'golint']
 
 "}}}
 
-" VimFilerTree {{{
-command! VimFilerTree call VimFilerTree()
-function VimFilerTree()
-	exec ':VimFiler -buffer-name=explorer -split -simple -winwidth=45 -toggle -no-quit'
-	wincmd t
-	setl winfixwidth
-endfunction
-autocmd! FileType vimfiler call g:my_vimfiler_settings()
-"function! g:my_vimfiler_settings()
-"	nmap     <buffer><expr><CR> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
-"	nnoremap <buffer>s          :call vimfiler#mappings#do_action('my_split')<CR>
-"	nnoremap <buffer>v          :call vimfiler#mappings#do_action('my_vsplit')<CR>
-"endfunction
+if version > 720
+	" VimFilerTree {{{
+	command! VimFilerTree call VimFilerTree()
+	function VimFilerTree()
+		exec ':VimFiler -buffer-name=explorer -split -simple -winwidth=45 -toggle -no-quit'
+		wincmd t
+		setl winfixwidth
+	endfunction
+	autocmd! FileType vimfiler call g:my_vimfiler_settings()
+	"function! g:my_vimfiler_settings()
+	"	nmap     <buffer><expr><CR> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
+	"	nnoremap <buffer>s          :call vimfiler#mappings#do_action('my_split')<CR>
+	"	nnoremap <buffer>v          :call vimfiler#mappings#do_action('my_vsplit')<CR>
+	"endfunction
 
-let my_action = {'is_selectable' : 1}
-function! my_action.func(candidates)
-	wincmd p
-	exec 'split '. a:candidates[0].action__path
-endfunction
-call unite#custom_action('file', 'my_split', my_action)
+	let my_action = {'is_selectable' : 1}
+	function! my_action.func(candidates)
+		wincmd p
+		exec 'split '. a:candidates[0].action__path
+	endfunction
+	call unite#custom_action('file', 'my_split', my_action)
 
-let my_action = {'is_selectable' : 1}
-function! my_action.func(candidates)
-	wincmd p
-	exec 'vsplit '. a:candidates[0].action__path
-endfunction
-call unite#custom_action('file', 'my_vsplit', my_action)
-" }}}
+	let my_action = {'is_selectable' : 1}
+	function! my_action.func(candidates)
+		wincmd p
+		exec 'vsplit '. a:candidates[0].action__path
+	endfunction
+	call unite#custom_action('file', 'my_vsplit', my_action)
+	" }}}
+endif
 
 set cmdheight=1
 let g:syntastic_python_checkers = ["flake8"]

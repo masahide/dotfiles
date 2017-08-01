@@ -34,7 +34,7 @@ NeoBundle 'git://github.com/kana/vim-fakeclip.git'
 NeoBundle 'https://github.com/fuenor/im_control.vim.git'
 NeoBundle 'git://github.com/scrooloose/nerdtree.git'
 NeoBundle 'git://github.com/scrooloose/syntastic.git'
-"NeoBundle 'Blackrush/vim-gocode'
+NeoBundle 'Blackrush/vim-gocode'
 NeoBundle 'matchit.zip'
 NeoBundle 'vim-scripts/tagbar-phpctags',{
   \   'build' : {
@@ -45,14 +45,18 @@ NeoBundle 'vim-scripts/tagbar-phpctags',{
 
 "golang vim http://qiita.com/shiena/items/870ac0f1db8e9a8672a7
 NeoBundle 'majutsushi/tagbar'
-NeoBundle 'git://github.com/Shougo/vimfiler.git'
-NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'soh335/unite-outline-go'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle 'dgryski/vim-godef'
+NeoBundle 'vim-jp/vim-go-extra'
+" vim-ft-goは最新版のvimを使えない場合のみ
+" NeoBundle 'google/vim-ft-go'
 NeoBundle 'https://github.com/fatih/vim-go'
-NeoBundle 'https://github.com/vim-jp/vim-go-extra.git'
+
+
 NeoBundle 'git://github.com/ClockworkNet/vim-junos-syntax.git'
 NeoBundle 'junegunn/vim-easy-align'
+NeoBundle 'fisadev/vim-isort'
 
 " Enable loading filetype and indentation plugins
 filetype plugin on
@@ -488,16 +492,38 @@ command! -range Paste64Copy :call s:Paste64Copy()
 "golang vim http://qiita.com/shiena/items/870ac0f1db8e9a8672a7
 " for golang {{{
 if $GOROOT != ''
-	set rtp+=$GOROOT/misc/vim
+	"set rtp+=$GOROOT/misc/vim
 endif
 if $GOPATH != ''
-	set rtp^=$GOPATH/src/github.com/nsf/gocode/vim
+	"set rtp^=$GOPATH/src/github.com/nsf/gocode/vim
 	set path+=$GOPATH/src
 endif
 let g:gofmt_command = 'goimports'
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_term_enabled = 1
+let g:go_highlight_build_constraints = 1
+augroup GolangSettings
+	autocmd!
+	autocmd FileType go nmap <leader>gr <Plug>(go-run)
+	autocmd FileType go nmap <leader>gc <Plug>(go-coverage)
+	autocmd FileType go nmap <leader>gb <Plug>(go-build)
+	autocmd FileType go nmap <leader>gt <Plug>(go-test)
+	autocmd FileType go nmap <Leader>ds <Plug>(go-def-split)
+	autocmd FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+	autocmd FileType go nmap <Leader>dt <Plug>(go-def-tab)
+	autocmd FileType go nmap <Leader>gd <Plug>(go-doc)
+	autocmd FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+	autocmd FileType go :highlight goErr cterm=bold ctermfg=214
+	autocmd FileType go :match goErr /\<err\>/
+augroup END
 au BufWritePre *.go Fmt
 au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4 completeopt=menu,preview
 au FileType go compiler go
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['go'] }
+let g:syntastic_go_checkers = ['go', 'golint']
 
 "}}}
 
@@ -531,3 +557,4 @@ call unite#custom_action('file', 'my_vsplit', my_action)
 " }}}
 
 set cmdheight=1
+let g:syntastic_python_checkers = ["flake8"]

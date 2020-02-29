@@ -1,0 +1,30 @@
+
+
+nnoremap <silent> <C-N> :NERDTreeToggle<CR>
+
+" vim-lsp
+let g:lsp_diagnostics_echo_cursor = 1
+nnoremap <silent> <C-> :LspDocumentDiagnostics<CR>
+nnoremap <leader>lD  :LspTypeDefinition<cr>
+nnoremap <leader>lF  :LspDocumentFormat<cr>
+nnoremap <leader>lR  :LspRename<cr>
+nnoremap <leader>lc  :LspCodeAction<cr>
+nnoremap <leader>ld  :LspDefinition<cr>
+nnoremap <leader>lf  :LspDocumentRangeFormat<cr>
+nnoremap <leader>lh  :LspHover<cr>
+nnoremap <leader>ll  :LspDocumentDiagnostics<cr>
+nnoremap <leader>lm  :LspDocumentSymbol<cr>
+nnoremap <leader>lpd :LspPeekDefinition<cr>
+nnoremap <leader>lr  :LspReferences<cr>
+
+
+
+set backup
+set backupdir=~/.vim/backup
+set swapfile
+set directory=~/.vim/tmp
+
+if has('persistent_undo')
+    set undodir=~/.vim/undo
+    set undofile
+endif

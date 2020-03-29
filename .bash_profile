@@ -1,6 +1,6 @@
 
 HISTSIZE=50000
-export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/bin:$HOME/go/bin
 export EDITOR=vim
 
 case $(uname) in
@@ -16,6 +16,7 @@ case $(uname) in
         export LDFLAGS="-L/usr/local/opt/readline/lib"
         export CPPFLAGS="-I/usr/local/opt/readline/include"
         export CLICOLOR=1
+        export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
         ;;
     Linux)
         

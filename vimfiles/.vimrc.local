@@ -1,4 +1,29 @@
 
+nnoremap <silent> <F3> :NERDTreeTabsToggle<CR>
+
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_settings = {
+\ 'efm-langserver': {
+\   'disabled': v:false
+\ },
+\ }
+
+autocmd BufWritePre *.ts,*.tsx call execute('LspDocumentFormatSync --server=efm-langserver')
+
+" ale
+"":call extend(g:ale_linters, {
+""    \'typescriptreact': ['eslint'], })
+""let g:ale_fixers = {
+""\   'typescriptreact': ['eslint'],
+""\}
+""let g:ale_fix_on_save = 1
+
+
+" react
+"Plug 'Quramy/tsuquyomi'
+"let g:tsuquyomi_completion_detail = 1
+"autocmd FileType typescript setlocal completeopt+=menu,preview
+""""""""""
 
 nnoremap <silent> <C-N> :NERDTreeToggle<CR>
 
@@ -28,3 +53,74 @@ if has('persistent_undo')
     set undodir=~/.vim/undo
     set undofile
 endif
+
+
+" tagbar
+let g:tagbar_type_typescript = {
+    \ 'ctagstype': 'typescript',
+    \ 'kinds': [
+      \ 'c:class',
+      \ 'n:namespace',
+      \ 'f:function',
+      \ 'G:generator',
+      \ 'v:variable',
+      \ 'm:method',
+      \ 'p:property',
+      \ 'i:interface',
+      \ 'g:enum',
+      \ 't:type',
+      \ 'a:alias',
+    \ ],
+    \'sro': '.',
+      \ 'kind2scope' : {
+      \ 'c' : 'class',
+      \ 'n' : 'namespace',
+      \ 'i' : 'interface',
+      \ 'f' : 'function',
+      \ 'G' : 'generator',
+      \ 'm' : 'method',
+      \ 'p' : 'property',
+      \},
+  \ }
+
+
+" fzf tabs
+" [tab open] ----------------------------------
+" 数あるタブから開く
+" leader to で開始するための設定
+nnoremap <leader>to :FZFTabOpen<CR>
+command! FZFTabOpen call s:FZFTabOpenFunc()
+
+function! s:FZFTabOpenFunc()
+    call fzf#run({
+            \ 'source':  s:GetTabList(),
+            \ 'sink':    function('s:TabListSink'),
+            \ 'options': '-m -x +s',
+            \ 'down':    '40%'})
+endfunction
+
+function! s:GetTabList()
+    let s:tabList = execute('tabs')
+    let s:textList = []
+    for tabText  in split(s:tabList, '\n')
+        let s:tabPageText = matchstr(tabText, '^Tab page')
+        if !empty(s:tabPageText)
+            let s:pageNum = matchstr(tabText, '[0-9]*$')
+        else 
+            let s:textList = add(s:textList, printf('%d %s',
+                \ s:pageNum,
+                \ tabText,
+                \   ))
+        endif
+    endfor
+    return s:textList
+endfunction
+
+function! s:TabListSink(line)
+    let parts = split(a:line, '\s')
+    execute 'normal ' . parts[0] . 'gt' 
+endfunction
+
+"" terminal
+"" 無名レジスタをペースト
+tnoremap <C-T> <C-W>""

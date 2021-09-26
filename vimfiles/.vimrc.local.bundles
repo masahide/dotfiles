@@ -12,5 +12,4 @@ Plug 'mattn/vim-lsp-settings'
 "" go
 Plug 'mattn/vim-goimports'
 
-
 Plug 'editorconfig/editorconfig-vim'

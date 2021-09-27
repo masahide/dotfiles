@@ -102,8 +102,12 @@ endfunction
 function! s:GetTabList()
     let s:tabList = execute('tabs')
     let s:textList = []
+    let s:pageNum = ''
     for tabText  in split(s:tabList, '\n')
         let s:tabPageText = matchstr(tabText, '^Tab page')
+        if empty(s:tabPageText)
+            let s:tabPageText = matchstr(tabText, '^タブページ')
+        endif
         if !empty(s:tabPageText)
             let s:pageNum = matchstr(tabText, '[0-9]*$')
         else 
@@ -124,3 +128,4 @@ endfunction
 "" terminal
 "" 無名レジスタをペースト
 tnoremap <C-T> <C-W>""
+

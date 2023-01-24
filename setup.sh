@@ -9,6 +9,7 @@ vimfiles/.vimrc
 vimfiles/.vimrc.local
 vimfiles/.vimrc.local.bundles
 .tmux.conf
+.wezterm.lua
 "
 
 for f in $dotfiles; do

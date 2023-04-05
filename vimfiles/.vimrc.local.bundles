@@ -1,13 +1,17 @@
 
 Plug 'vim-jp/vimdoc-ja'
 
-
+" https://kitagry.github.io/blog/programmings/2020/10/vim-golang-dev/
 "" lsp
+Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+
+" スニペット
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 
 "" go
 Plug 'mattn/vim-goimports'

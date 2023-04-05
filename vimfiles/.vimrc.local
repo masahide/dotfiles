@@ -1,4 +1,10 @@
 
+" go
+" https://kitagry.github.io/blog/programmings/2020/10/vim-golang-dev/
+
+
+
+"""""
 nnoremap <silent> <F3> :NERDTreeTabsToggle<CR>
 
 let g:lsp_diagnostics_echo_cursor = 1
@@ -9,6 +15,7 @@ let g:lsp_settings = {
 \ }
 
 autocmd BufWritePre *.ts,*.tsx call execute('LspDocumentFormatSync --server=efm-langserver')
+autocmd BufWritePre *.go call execute(['LspCodeActionSync source.organizeImports', 'LspDocumentFormatSync'])
 
 " ale
 "":call extend(g:ale_linters, {
@@ -17,6 +24,7 @@ autocmd BufWritePre *.ts,*.tsx call execute('LspDocumentFormatSync --server=efm-
 ""\   'typescriptreact': ['eslint'],
 ""\}
 ""let g:ale_fix_on_save = 1
+
 
 
 " react
